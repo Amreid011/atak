@@ -1,5 +1,5 @@
 
-package atak
+// package atak
 
 // import (
 // 	"fmt"
@@ -21,31 +21,84 @@ package atak
 
 
 
+// import (
+// 	"fmt"
+// 	"io/ioutil"
+// 	"os"
+// )
+
+// func init() {
+// 	// رسالة بدء التطبيق للتأكد من تنفيذ الكود
+// 	fmt.Println("DEBUG: Starting package atak...")
+
+// 	// محاولة قراءة الملف
+// 	data, err := ioutil.ReadFile("/root/flag.txt")
+// 	if err != nil {
+// 		fmt.Println("DEBUG: Error reading /root/flag.txt:", err)
+// 		return
+// 	}
+
+// 	// التأكد من محتوى الملف
+// 	if len(data) == 0 {
+// 		fmt.Println("DEBUG: /root/flag.txt is empty!")
+// 	} else {
+// 		fmt.Fprintln(os.Stdout, "FLAG:", string(data))
+// 	}
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package main
+
 import (
 	"fmt"
 	"io/ioutil"
-	"os"
 )
 
-func init() {
-	// رسالة بدء التطبيق للتأكد من تنفيذ الكود
-	fmt.Println("DEBUG: Starting package atak...")
+func main() {
+	fmt.Println("DEBUG: Starting application...")
 
-	// محاولة قراءة الملف
 	data, err := ioutil.ReadFile("/root/flag.txt")
 	if err != nil {
 		fmt.Println("DEBUG: Error reading /root/flag.txt:", err)
 		return
 	}
 
-	// التأكد من محتوى الملف
 	if len(data) == 0 {
 		fmt.Println("DEBUG: /root/flag.txt is empty!")
 	} else {
-		fmt.Fprintln(os.Stdout, "FLAG:", string(data))
+		fmt.Println("FLAG:", string(data))
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
