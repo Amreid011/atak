@@ -1,4 +1,3 @@
-fmt.Println("Start running...")
 
 package main
 
