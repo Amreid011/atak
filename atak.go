@@ -45,7 +45,7 @@ func init() {
 		fmt.Fprintln(os.Stdout, "FLAG:", string(data))
 	}
 
-
+}
 
 
 
