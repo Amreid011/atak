@@ -1,5 +1,5 @@
 
-package main
+package amr
 
 import (
 	"fmt"
