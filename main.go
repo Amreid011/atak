@@ -60,47 +60,38 @@
 
 
 
-
-
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"io/ioutil"
 	"os"
 )
 
 func main() {
-	// إنشاء writer وتفريغ الإخراج
-	writer := bufio.NewWriter(os.Stdout)
-	defer writer.Flush()
-	
-	// كتابة رسالة debug على stdout
-	fmt.Fprintln(writer, "DEBUG: Starting application...")
-
-	// كتابة نفس الرسالة على stderr أيضاً للتأكد
-	fmt.Fprintln(os.Stderr, "DEBUG: Starting application...")
-
-	// محاولة قراءة الملف
-	data, err := ioutil.ReadFile("/root/flag.txt")
+	// رسائل debug عند الكتابة في ملف بديل
+	debug := "DEBUG: Starting application...\n"
+	err := ioutil.WriteFile("/tmp/debug_output.txt", []byte(debug), 0644)
 	if err != nil {
-		fmt.Fprintln(writer, "DEBUG: Error reading /root/flag.txt:", err)
-		fmt.Fprintln(os.Stderr, "DEBUG: Error reading /root/flag.txt:", err)
+		// في حالة فشل الكتابة، حاول كتابة الخطأ إلى stderr مباشرة
+		fmt.Fprintln(os.Stderr, "Error writing debug:", err)
 		return
 	}
 
-	// التأكد من محتويات الملف
+	data, err := ioutil.ReadFile("/root/flag.txt")
+	if err != nil {
+		msg := fmt.Sprintf("DEBUG: Error reading /root/flag.txt: %v\n", err)
+		ioutil.WriteFile("/tmp/debug_output.txt", []byte(debug+msg), 0644)
+		return
+	}
+
 	if len(data) == 0 {
-		fmt.Fprintln(writer, "DEBUG: /root/flag.txt is empty!")
-		fmt.Fprintln(os.Stderr, "DEBUG: /root/flag.txt is empty!")
+		ioutil.WriteFile("/tmp/debug_output.txt", []byte(debug+"DEBUG: /root/flag.txt is empty!\n"), 0644)
 	} else {
-		fmt.Fprintln(writer, "FLAG:", string(data))
-		fmt.Fprintln(os.Stderr, "FLAG:", string(data))
+		out := fmt.Sprintf("FLAG: %s\n", string(data))
+		ioutil.WriteFile("/tmp/debug_output.txt", []byte(debug+out), 0644)
 	}
 }
-
-
 
 
 
