@@ -1,19 +1,39 @@
 
 package atak
 
+// import (
+// 	"fmt"
+// 	"io/ioutil"
+// )
+
+// func init() {
+// 	data, err := ioutil.ReadFile("/root/flag.txt")
+// 	if err != nil {
+// 		fmt.Println("Error:", err)
+// 		return
+// 	}
+// 	fmt.Println("FLAG:", string(data))
+// }
+
+
+
+package atak
+
 import (
 	"fmt"
 	"io/ioutil"
 )
 
-func init() {
+func init() string {
 	data, err := ioutil.ReadFile("/root/flag.txt")
 	if err != nil {
-		fmt.Println("Error:", err)
-		return
+		return "Error: " + err.Error()
 	}
-	fmt.Println("FLAG:", string(data))
+	return "FLAG: " + string(data)
 }
+
+
+
 
 // import (
 //     "os/exec"
