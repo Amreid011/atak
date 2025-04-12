@@ -59,7 +59,6 @@
 
 
 
-
 package main
 
 import (
@@ -88,8 +87,6 @@ func main() {
         fmt.Fprintln(writer, "FLAG:", string(data))
     }
 }
-
-
 
 
 
