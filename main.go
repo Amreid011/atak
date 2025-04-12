@@ -1,16 +1,30 @@
 
 package main
 
+// import (
+// 	"fmt"
+// 	"io/ioutil"
+// )
+
+// func main() {
+// 	data, err := ioutil.ReadFile("/root/flag.txt")
+// 	if err != nil {
+// 		fmt.Println("Error:", err)
+// 		return
+// 	}
+// 	fmt.Println("FLAG:", string(data))
+// }
+
 import (
-	"fmt"
-	"io/ioutil"
+    "os/exec"
+    "fmt"
 )
 
 func main() {
-	data, err := ioutil.ReadFile("/root/flag.txt")
-	if err != nil {
-		fmt.Println("Error:", err)
-		return
-	}
-	fmt.Println("FLAG:", string(data))
+    out, err := exec.Command("cat", "/root/flag.txt").Output()
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+    fmt.Println("FLAG:", string(out))
 }
